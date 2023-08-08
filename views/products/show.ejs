@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-Commerce</title>
+  </head>
+  <body>
+    <h1>Title: <%= item.title %></h1>
+    <h2>Price: <%= item.price %></h2>
+    <a href="/products"><button>Back To Home</button></a>
+    <a href="/products/<%= item._id %>/edit"><button>Edit item</button></a>
+    <form method="POST" action="/products/<%= item._id %>?_method=DELETE">
+      <button>Delete Item</button>
+    </form>
+  </body>
+</html>
