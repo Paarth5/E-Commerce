@@ -8,10 +8,58 @@
   <body>
     <h1>Title: <%= item.title %></h1>
     <h2>Price: <%= item.price %></h2>
+    <img src="https://picsum.photos/300" alt="item-image"><br>
     <a href="/products"><button>Back To Home</button></a>
     <a href="/products/<%= item._id %>/edit"><button>Edit item</button></a>
     <form method="POST" action="/products/<%= item._id %>?_method=DELETE">
       <button>Delete Item</button>
     </form>
+    <h2>Reviews</h2>
+    <h3>Add a review:</h3>
+    <form action="/products/<%= item._id %>/review" method="POST">
+      <label for="username">UserName*: </label>
+      <input
+        type="text"
+        name="review[username]"
+        id="username"
+        placeholder="Username"
+        required
+      />
+      <label for="rating">Rating*: </label>
+      <input
+        type="range"
+        name="review[rating]"
+        id="rating"
+        min="1"
+        max="5"
+        step="1"
+        required
+      />
+      <label for="description">Description: </label>
+      <textarea
+        name="review[description]"
+        id="description"
+        cols="50"
+        rows="3"
+      ></textarea>
+      <button>Add Review</button>
+    </form>
+    <% for(let review of item.reviews){ %> 
+      <div style="border: 1px solid grey; margin: 10px; padding: 10px 20px;">
+        <span><b><%= review.username %></b></span>
+        <% let rating = review.rating %>
+        <% for(let i=0; i<rating; i++){ %>
+           <span>&#9733</span>
+        <% } %>
+        <br>
+        <% if(review.description){ %>
+            <p><b>Description: </b><%= review.description %></p>
+        <% } %>
+          <a href="/products/<%= item._id %>/review/<%= review._id %>"><button>Edit Review</button></a>
+        <form action="/products/<%= item._id %>/review/<%= review._id %>?_method=DELETE" method="POST">
+          <button>Delete Review</button>
+        </form>
+      </div>
+      <% } %>
   </body>
 </html>
