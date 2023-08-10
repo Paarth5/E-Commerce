@@ -28,8 +28,14 @@ app.get("/", (req, res) => {
 });
 
 app.get("/products", async (req, res) => {
-  const items = await Product.find({});
-  res.render("products/home", { items });
+  const tag = req.query.Category;
+  if (tag && tag !== "None") {
+    const items = await Product.find({ tag: tag });
+    res.render("products/home", { items });
+  } else {
+    items = await Product.find({});
+    res.render("products/home", { items });
+  }
 });
 app.post("/products", async (req, res) => {
   const newItem = new Product(req.body.item);
