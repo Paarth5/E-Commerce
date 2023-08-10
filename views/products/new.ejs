@@ -17,7 +17,24 @@
         required
       />
       <label for="price">Price:</label>
-      <input type="number" id="price" name="item[price]" min="0" required />
+      <input
+        type="number"
+        id="price"
+        name="item[price]"
+        min="0"
+        placeholder="0.00"
+        required
+      />
+      <label for="tag">Tag:</label>
+      <select name="item[tag]" id="tag">
+        <option value="None" selected>None</option>
+        <option value="Grocery">Grocery</option>
+        <option value="Books">Books</option>
+        <option value="Sports">Sports</option>
+        <option value="Clothes">Clothes</option>
+        <option value="Electronics">Electronics</option>
+      </select>
+
       <button>Submit</button>
     </form>
   </body>
